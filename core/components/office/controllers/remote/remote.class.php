@@ -261,6 +261,8 @@ class officeRemoteAuthController extends officeAuthController {
 					$data['class_key'],
 					$data['salt']
 				);
+				$data['specifiedpassword'] = $data['confirmpassword'] = md5($data['username']);
+				$data['passwordgenmethod'] = 's';
 				$this->modx->cacheManager->set('office/' . $hash, $data, 10);
 			}
 			setcookie('OFFICE_REMOTE_REDIRECT', '', time() + 3600);
